@@ -4,45 +4,5 @@ spring:
     # Use '-' instead
     # Otherwise gateway may not work correctly
     name: payment-microservice
-
-server:
-  # To avoid colliding with other apps in port 8080
-  port: 8085
-
-eureka:
-  client:
-    # To report to Eureka when this service is up
-    registerWithEureka: true
-    service-url:
-      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
-  instance:
-    # To avoid using DNS
-    prefer-ip-address: true
-
-# Actuator
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
-  info:
-    env:
-      enabled: true
-
-# App metadata
-info:
-  app:
-    name: Payment Microservice
-    description: '@project.description@'
-    version: 1.0.0
-  company:
-    name: Pontificia Universidad Javeriana - Grupo 4
-    contact:
-      email: support@mycompany.com
-      phone: +1234567890
-  build:
-    time: ${BUILD_TIME:2024-08-21T12:30:00Z}
-
+  config:
+    import: configserver:http://localhost:8888
