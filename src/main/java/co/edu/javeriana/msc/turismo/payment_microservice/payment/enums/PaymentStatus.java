@@ -1,4 +1,4 @@
-package co.edu.javeriana.msc.turismo.payment_microservice.enums;
+package co.edu.javeriana.msc.turismo.payment_microservice.payment.enums;
 
 public enum PaymentStatus {
     ACEPTADA(1),

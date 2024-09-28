@@ -1,0 +1,8 @@
+//Creating userBalance
+POST http://localhost:8085/payments
+Content-Type: application/json
+
+{
+    "userId": "50f60693-b5a9-4f9f-90fc-9c710cdcd1b0",
+    "amount": 1000000.0
+}

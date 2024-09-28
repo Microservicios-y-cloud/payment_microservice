@@ -1,4 +1,4 @@
-package co.edu.javeriana.msc.turismo.payment_microservice.event;
+package co.edu.javeriana.msc.turismo.payment_microservice.payment.event;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.UUID;
 
-import co.edu.javeriana.msc.turismo.payment_microservice.dto.UserTransactionRequest;
-import co.edu.javeriana.msc.turismo.payment_microservice.enums.PaymentStatus;
+import co.edu.javeriana.msc.turismo.payment_microservice.payment.dto.UserTransactionRequest;
+import co.edu.javeriana.msc.turismo.payment_microservice.payment.enums.PaymentStatus;
 
 @NoArgsConstructor
 @Data

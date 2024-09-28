@@ -1,4 +1,4 @@
-package co.edu.javeriana.msc.turismo.payment_microservice.model;
+package co.edu.javeriana.msc.turismo.payment_microservice.payment.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,9 +11,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document
 
-public class UserTransaction {
+public class UserBalance {
     @Id
-    private Integer orderId;
+    private String id;
     private String userId;
-    private int price;
+    private Double amount;
 }

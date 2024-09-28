@@ -1,4 +1,4 @@
-package co.edu.javeriana.msc.turismo.payment_microservice.event;
+package co.edu.javeriana.msc.turismo.payment_microservice.payment.event;
 
 import java.util.Date;
 import java.util.UUID;
