@@ -1,6 +1,7 @@
 package co.edu.javeriana.msc.turismo.payment_microservice.payment.mappers;
 
 import co.edu.javeriana.msc.turismo.payment_microservice.payment.dto.UserBalanceRequest;
+import co.edu.javeriana.msc.turismo.payment_microservice.payment.dto.UserBalanceResponse;
 import co.edu.javeriana.msc.turismo.payment_microservice.payment.model.UserBalance;
 
 public class UserBalanceMapper {
@@ -13,6 +14,16 @@ public class UserBalanceMapper {
         userBalance.setUserId(request.getUserId());
         userBalance.setAmount(request.getAmount());
         return userBalance;
+    }
+
+    public static UserBalanceResponse toUserBalanceResponse(UserBalance userBalance) {
+        if (userBalance == null) {
+            return null;
+        }
+        UserBalanceResponse userBalanceResponse = new UserBalanceResponse(userBalance.getId(), 
+                                                                        userBalance.getUserId(),
+                                                                         userBalance.getAmount());
+        return userBalanceResponse;
     }
     
 }

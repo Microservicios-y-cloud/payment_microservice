@@ -15,7 +15,7 @@ spring:
         # 9092 is the default port of Kafka
           brokers: localhost:9092
       bindings:
-        # https://docs.spring.io/spring-cloud-stream/reference/spring-cloud-stream/functional-binding-names.htm
+        # https://docs.spring.io/spring-cloud-stream/reference/spring-cloud-stream/functional-binding-names.html
         # Format: <method name>-<in or out>-<index>
         # sendMessage: name of the method that sends the message
         # out: because is a consumer
@@ -24,3 +24,5 @@ spring:
         # Name of the queue that will manage the messages
           destination: order-payment-queue
           group: my-consumer-group
+        sendStatus-out-0:
+          destination: payment-order-queue

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import co.edu.javeriana.msc.turismo.payment_microservice.payment.dto.UserBalanceRequest;
+import co.edu.javeriana.msc.turismo.payment_microservice.payment.dto.UserBalanceResponse;
 import co.edu.javeriana.msc.turismo.payment_microservice.payment.services.PaymentService;
 
 import lombok.extern.slf4j.Slf4j;
