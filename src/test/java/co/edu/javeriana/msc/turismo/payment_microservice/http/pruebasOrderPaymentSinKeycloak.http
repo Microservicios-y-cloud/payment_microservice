@@ -1,0 +1,57 @@
+POST http://localhost:8084/cart
+Content-Type: application/json
+
+{
+  "createdBy": {
+    "id": "50f60693-b5a9-4f9f-90fc-9c710cdcd1b0",
+    "userType": "CUSTOMER",
+    "username": "customer1",
+    "firstName": "customer1",
+    "lastName": "customer1",
+    "email": "customer1@mail.com"
+  },
+  "cartItems": [
+    {
+      "serviceId": 1,
+      "quantity": 2,
+      "subtotal": 580000
+    }
+  ]
+}
+
+###add item to cart
+POST http://localhost:8084/cart/66fc8f52640b2c6e08923c59/cartItem
+Content-Type: application/json
+
+{
+  "serviceId": 88,
+  "quantity": 1,
+  "subtotal": 258000
+}
+
+###
+#Create User Balance
+POST http://localhost:8085/payments
+Content-Type: application/json
+
+{
+    "user": {
+      "id": "50f60693-b5a9-4f9f-90fc-9c710cdcd1b0",
+      "userType": "CUSTOMER",
+      "username": "customer1",
+      "firstName": "customer1",
+      "lastName": "customer1",
+      "email": "customer1@mail.com"
+    },
+    "amount": 1000000.0
+}
+
+
+###
+#Create order from a cart
+GET http://localhost:8084/cart/purchase/6700999f2096170f04769925
+Content-Type: application/json
+
+
+
+
