@@ -1,5 +1,7 @@
 package co.edu.javeriana.msc.turismo.payment_microservice.payment.services;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.function.StreamBridge;
@@ -69,6 +71,21 @@ public class PaymentService {
 
     public String createUserBalance(@Valid UserBalanceRequest request) {
         var userBalance = UserBalanceMapper.toUserBalance(request);
+        return userBalanceRespository.save(userBalance).getUser().getId();
+    }
+
+    public String createRandomUserBalance(@Valid UserBalanceRequest request) {
+        Double randomBalance = ThreadLocalRandom.current().nextDouble(10000, 200001);
+        var userBalance = UserBalanceMapper.toUserBalance(request);
+        userBalance.setAmount(randomBalance); 
+        return userBalanceRespository.save(userBalance).getUser().getId();
+    }
+
+    public String updateRandomUserBalance(String userId){
+        var userBalance = userBalanceRespository.findByUserId(userId)
+                .orElseThrow(() -> new EntityNotFoundException("User balance not found, with id: " + userId));
+        Double randomBalance = ThreadLocalRandom.current().nextDouble(10000, 200001);
+        userBalance.setAmount(randomBalance);
         return userBalanceRespository.save(userBalance).getUser().getId();
     }
 }
