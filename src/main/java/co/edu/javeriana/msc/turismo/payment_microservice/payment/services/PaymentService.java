@@ -42,7 +42,8 @@ public class PaymentService {
 
         // Se obtiene el saldo del usuario
 
-        var userBalance = userBalanceRespository.findByUserId(userTransactionRequest.getUserId()).get();
+        var userBalance = userBalanceRespository.findByUserId(userTransactionRequest.getUser().getId())
+                .orElseThrow(() -> new EntityNotFoundException("User balance not found, with id: " + userTransactionRequest.getUser().getId()));
         // Aquí se implementa la lógica del pago:
         // - Actualizar base de datos
         var userTransaction = UserTransactionMapper.toUserTransaction(userTransactionRequest);
@@ -68,6 +69,6 @@ public class PaymentService {
 
     public String createUserBalance(@Valid UserBalanceRequest request) {
         var userBalance = UserBalanceMapper.toUserBalance(request);
-        return userBalanceRespository.save(userBalance).getUserId();
+        return userBalanceRespository.save(userBalance).getUser().getId();
     }
 }

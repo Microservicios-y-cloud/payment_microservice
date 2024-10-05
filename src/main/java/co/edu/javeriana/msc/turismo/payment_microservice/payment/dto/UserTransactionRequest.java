@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 public class UserTransactionRequest implements Serializable{
     private String orderId;
-    private String userId;
+    private Customer user;
     private Double amount;
     Status status;
     PaymentStatus paymentStatus;

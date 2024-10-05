@@ -8,7 +8,7 @@ Content-Type: application/json
     "username": "customer1",
     "firstName": "customer1",
     "lastName": "customer1",
-    "email": "customer1@mail.com"
+    "email": "kevinevelascop@gmail.com"
   },
   "cartItems": [
     {
@@ -41,7 +41,7 @@ Content-Type: application/json
       "username": "customer1",
       "firstName": "customer1",
       "lastName": "customer1",
-      "email": "customer1@mail.com"
+      "email": "kevinevelascop@gmail.com"
     },
     "amount": 1000000.0
 }
@@ -49,7 +49,7 @@ Content-Type: application/json
 
 ###
 #Create order from a cart
-GET http://localhost:8084/cart/purchase/6700999f2096170f04769925
+GET http://localhost:8084/cart/purchase/6700bef91a67184fb8f2f1c8
 Content-Type: application/json
 
 

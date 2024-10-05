@@ -11,7 +11,7 @@ public class UserBalanceMapper {
         }
         UserBalance userBalance = new UserBalance();
         userBalance.setId(request.getId());
-        userBalance.setUserId(request.getUserId());
+        userBalance.setUser(request.getUser());
         userBalance.setAmount(request.getAmount());
         return userBalance;
     }
@@ -21,7 +21,7 @@ public class UserBalanceMapper {
             return null;
         }
         UserBalanceResponse userBalanceResponse = new UserBalanceResponse(userBalance.getId(), 
-                                                                        userBalance.getUserId(),
+                                                                        userBalance.getUser().getId(),
                                                                          userBalance.getAmount());
         return userBalanceResponse;
     }

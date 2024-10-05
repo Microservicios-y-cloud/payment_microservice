@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 
 public class UserBalanceRequest {
     private String id;
-    private String userId;
+    private Customer user;
     private Double amount;    
 }

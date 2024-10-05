@@ -1,5 +1,6 @@
 package co.edu.javeriana.msc.turismo.payment_microservice.payment.model;
 
+import co.edu.javeriana.msc.turismo.payment_microservice.payment.dto.Customer;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,6 +15,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UserBalance {
     @Id
     private String id;
-    private String userId;
+    private Customer user;
     private Double amount;
 }
