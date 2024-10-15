@@ -12,7 +12,7 @@ Content-Type: application/json
   },
   "cartItems": [
     {
-      "serviceId": 1,
+      "serviceId": 155,
       "quantity": 2,
       "subtotal": 580000
     }
@@ -43,13 +43,13 @@ Content-Type: application/json
       "lastName": "customer1",
       "email": "kevinevelascop@gmail.com"
     },
-    "amount": 1000000.0
+    "amount": 100000.0
 }
 
 
 ###
 #Create order from a cart
-GET http://localhost:8084/cart/purchase/6700bef91a67184fb8f2f1c8
+GET http://localhost:8084/cart/purchase/670ec5f6e732e34a90c04f6d
 Content-Type: application/json
 
 
