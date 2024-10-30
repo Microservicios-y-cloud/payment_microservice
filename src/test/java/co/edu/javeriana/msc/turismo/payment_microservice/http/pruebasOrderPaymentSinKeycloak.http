@@ -36,11 +36,11 @@ Content-Type: application/json
 
 {
     "user": {
-      "id": "50f60693-b5a9-4f9f-90fc-9c710cdcd1b0",
+      "id": "c3214dfc-ac35-43e0-ad58-8dd5904454ee",
       "userType": "CUSTOMER",
-      "username": "customer1",
-      "firstName": "customer1",
-      "lastName": "customer1",
+      "username": "customer4",
+      "firstName": "customer4",
+      "lastName": "customer4",
       "email": "kevinevelascop@gmail.com"
     },
     "amount": 100000.0
