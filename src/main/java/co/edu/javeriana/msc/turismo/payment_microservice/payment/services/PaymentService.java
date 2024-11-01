@@ -2,6 +2,7 @@ package co.edu.javeriana.msc.turismo.payment_microservice.payment.services;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import jakarta.ws.rs.ServiceUnavailableException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.function.StreamBridge;
@@ -54,7 +55,10 @@ public class PaymentService {
             userTransaction.setOrderStatus(Status.RECHAZADA);
             userTransaction.setPaymentStatus(PaymentStatus.RECHAZADA);
             userTransactionRespository.save(userTransaction);
-            sendStatus(userTransactionRequest);
+            var sent = sendStatus(userTransactionRequest);
+            if(!sent) {
+                throw new ServiceUnavailableException("Error sending user transaction status to queue. Kafka service is currently unavailable. Please try again later.");
+            }
             return;
         }
         Double newBalance = userBalance.getAmount() - userTransactionRequest.getAmount();
@@ -66,7 +70,10 @@ public class PaymentService {
         userTransactionRespository.save(userTransaction);
 
         
-        sendStatus(UserTransactionMapper.toUserTransactionRequest(userTransaction));
+        var sent = sendStatus(UserTransactionMapper.toUserTransactionRequest(userTransaction));
+        if(!sent) {
+            throw new ServiceUnavailableException("Error sending user transaction status to queue. Kafka service is currently unavailable. Please try again later.");
+        }
     }
 
     public String createUserBalance(@Valid UserBalanceRequest request) {
