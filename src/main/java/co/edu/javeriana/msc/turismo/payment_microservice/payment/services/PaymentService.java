@@ -50,6 +50,15 @@ public class PaymentService {
         // Aquí se implementa la lógica del pago:
         // - Actualizar base de datos
         var userTransaction = UserTransactionMapper.toUserTransaction(userTransactionRequest);
+
+        //Reglas de negocio
+        //Comprobar que el usuario tiene un balance coherente
+        if(userBalance.getAmount() < 0) {
+            throw new IllegalArgumentException("User balance is negative. Please contact support.");
+        }
+        if(userTransactionRequest.getAmount() <= 0) {
+            throw new IllegalArgumentException("Transaction amount is invalid. Please try again.");
+        }
         // - Actualizar saldo del usuario
         if(userBalance.getAmount() < userTransactionRequest.getAmount()) {
             userTransaction.setOrderStatus(Status.RECHAZADA);
