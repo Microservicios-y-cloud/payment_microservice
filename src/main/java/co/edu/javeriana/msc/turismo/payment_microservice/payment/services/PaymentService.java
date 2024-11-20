@@ -18,6 +18,7 @@ import co.edu.javeriana.msc.turismo.payment_microservice.payment.enums.PaymentSt
 import co.edu.javeriana.msc.turismo.payment_microservice.payment.enums.Status;
 import co.edu.javeriana.msc.turismo.payment_microservice.payment.mappers.UserBalanceMapper;
 import co.edu.javeriana.msc.turismo.payment_microservice.payment.mappers.UserTransactionMapper;
+import co.edu.javeriana.msc.turismo.payment_microservice.payment.model.UserBalance;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 
@@ -86,7 +87,7 @@ public class PaymentService {
     }
 
     public String createUserBalance(@Valid UserBalanceRequest request) {
-        var userBalance = UserBalanceMapper.toUserBalance(request);
+        UserBalance userBalance = UserBalanceMapper.toUserBalance(request);
         return userBalanceRespository.save(userBalance).getUser().getId();
     }
 
@@ -104,4 +105,24 @@ public class PaymentService {
         userBalance.setAmount(randomBalance);
         return userBalanceRespository.save(userBalance).getUser().getId();
     }
-}
+
+    public String processUserBalance(UserBalanceRequest request) {
+        var existingUserBalance = userBalanceRespository.findByUserId(request.getUser().getId());
+
+        if (existingUserBalance.isPresent()) {
+            // Actualizar balance existente con un valor aleatorio
+            var userBalance = existingUserBalance.get();
+            Double randomBalance = ThreadLocalRandom.current().nextDouble(10000, 200001);
+            userBalance.setAmount(randomBalance);
+            userBalanceRespository.save(userBalance);
+            return "Balance actualizado para el usuario: " + userBalance.getUser().getId();
+        } else {
+            // Crear nuevo balance
+            Double randomBalance = ThreadLocalRandom.current().nextDouble(10000, 200001);
+            var userBalance = UserBalanceMapper.toUserBalance(request);
+            userBalance.setAmount(randomBalance);
+            userBalanceRespository.save(userBalance);
+            return "Nuevo balance creado para el usuario: " + userBalance.getUser().getId();
+        }
+    }
+    }
